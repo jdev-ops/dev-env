@@ -2,7 +2,9 @@
 
 import sys
 import subprocess
-from decouple import config
+from decouple import Config, RepositoryEnv
+
+config = Config(RepositoryEnv(".env.local"))
 
 git_executable = ["git"]
 

@@ -3,7 +3,9 @@
 import sys
 import re
 from git import Repo
-from decouple import config
+from decouple import Config, RepositoryEnv
+
+config = Config(RepositoryEnv(".env.local"))
 
 if __name__ == "__main__":
     TASKS_TYPES = config(
