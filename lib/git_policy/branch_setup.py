@@ -1,5 +1,4 @@
 import sys
-from decouple import config
 import json
 import subprocess
 import os
@@ -13,14 +12,14 @@ def main():
     JIRA_EMAIL = config("JIRA_EMAIL")
     JIRA_TOKEN = config("JIRA_TOKEN")
     JIRA_BOARD = config("JIRA_BOARD", default="33")
-    BASE_URL = config("BASE_URL")
+    JIRA_BASE_URL = config("JIRA_BASE_URL")
     STATUS_NAME = config("STATUS_NAME", default="En curso")
     TASKS_TYPES = config(
         "TASKS_TYPES",
         default="feat|fix|bugfix|config|refactor|build|ci|docs|test",
     )
     API_URL = f"/rest/agile/1.0/board/{JIRA_BOARD}/sprint"  # sprints from a board
-    API_URL = BASE_URL + API_URL
+    API_URL = JIRA_BASE_URL + API_URL
     BASIC_AUTH = HTTPBasicAuth(JIRA_EMAIL, JIRA_TOKEN)
     HEADERS = {"Content-Type": "application/json;charset=iso-8859-1"}
     response = requests.get(API_URL, headers=HEADERS, auth=BASIC_AUTH)
@@ -43,7 +42,7 @@ def main():
         sys.exit(1)
 
     API_URL = f"/rest/agile/1.0/sprint/{current_sprint}/issue"  # issues from a sprint
-    API_URL = BASE_URL + API_URL
+    API_URL = JIRA_BASE_URL + API_URL
     BASIC_AUTH = HTTPBasicAuth(JIRA_EMAIL, JIRA_TOKEN)
     HEADERS = {"Content-Type": "application/json;charset=iso-8859-1"}
     response = requests.get(API_URL, headers=HEADERS, auth=BASIC_AUTH)
