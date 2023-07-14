@@ -4,8 +4,10 @@ import subprocess
 import os
 import requests
 from requests.auth import HTTPBasicAuth
-from decouple import config
+# from decouple import config
 from slugify import slugify
+from decouple import Config, RepositoryEnv
+config = Config(RepositoryEnv(".env.local"))
 
 
 def main():
