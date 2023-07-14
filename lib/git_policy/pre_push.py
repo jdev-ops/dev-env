@@ -15,27 +15,27 @@ try:
     subprocess.check_output(["git", "config", "--get", "commit.gpgsign"])
 except subprocess.CalledProcessError as e:
     if SIG_COMMIT:
-        git_executable += [f"--config-env=commit.gpgsign=SIG_COMMIT"]
+        git_executable += ["--config-env=commit.gpgsign=SIG_COMMIT"]
 
 try:
     subprocess.check_output(["git", "config", "--get", "gpg.ssh.allowedSignersFile"])
 except subprocess.CalledProcessError as e:
     if ALLOWED_SIGNERS_FILE:
         git_executable += [
-            f"--config-env=gpg.ssh.allowedSignersFile=ALLOWED_SIGNERS_FILE"
+            "--config-env=gpg.ssh.allowedSignersFile=ALLOWED_SIGNERS_FILE"
         ]
 
 try:
     subprocess.check_output(["git", "config", "--get", "user.email"])
 except subprocess.CalledProcessError as e:
     if ACTIVE_EMAIL:
-        git_executable += [f"--config-env=user.email=ACTIVE_EMAIL"]
+        git_executable += ["--config-env=user.email=ACTIVE_EMAIL"]
 
 try:
     subprocess.check_output(["git", "config", "--get", "user.signingKey"])
 except subprocess.CalledProcessError as e:
     if ACTIVE_SIGNING_KEY:
-        git_executable += [f"--config-env=user.signingKey=ACTIVE_SIGNING_KEY"]
+        git_executable += ["--config-env=user.signingKey=ACTIVE_SIGNING_KEY"]
 
 if __name__ == "__main__":
     for line in sys.stdin:
