@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+_pre_commit
+chmod +x .git/hooks/pre-commit
