@@ -61,6 +61,7 @@ def main():
 
     menu = ["Task selection", "Description", "Type", "Apply and exit"]
     values = {"Task selection": None, "Description": None, "Type": None}
+    description = ""
 
     flag = True
     while flag:
@@ -89,7 +90,8 @@ def main():
                     text=True,
                     env=my_env,
                 )
-                values["Description"] = slugify(opt.stdout.strip())
+                description = opt.stdout.strip()
+                values["Description"] = slugify(description)
 
             case "Type":
                 my_env["GUM_CHOOSE_HEADER"] = f"Choose task type:"
@@ -109,7 +111,15 @@ def main():
                 else:
                     print("Applying changes")
                     print(values)
-                    print(f"git switch -c {values['Type']}/{values['Task selection']}-{values['Description']}")
+                    branch_name = f"{values['Type']}/{values['Task selection']}-{values['Description']}"
+                    print(f"git switch -c {branch_name}")
+                    open(f".git/.{branch_name}", "w").write(
+                        f"""
+                        {values['Type']}: [{values['Task selection']}] {description}
+                        
+                        Jira Ticket Link: {JIRA_BASE_URL}/browse/{values['Task selection']}
+                        """
+                    )
                     flag = False
 
 
