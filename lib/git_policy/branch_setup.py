@@ -118,7 +118,9 @@ def main():
                         ["git", "switch", "-c", branch_name], stdout=subprocess.PIPE, text=True
                     )
 
-                    open(f".git/.{slugify(branch_name)}", "w").write(
+                    if not os.path.exists(".git/devops"):
+                        os.makedirs(".git/devops")
+                    open(f".git/devops/.{slugify(branch_name)}", "w").write(
                         f"""
 {values['Type']}: [{values['Task selection']}] {description}
 
