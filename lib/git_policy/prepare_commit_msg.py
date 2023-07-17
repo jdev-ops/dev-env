@@ -6,6 +6,7 @@ from slugify import slugify
 
 if __name__ == "__main__":
     if len(sys.argv) > 2: # ammended commit
+        print("Ammended commit, skipping")
         sys.exit(0)
     else:
         repo = Repo(".")
