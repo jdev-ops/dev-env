@@ -113,7 +113,7 @@ def main():
                     print(values)
                     branch_name = f"{values['Type']}/{values['Task selection']}-{values['Description']}"
                     print(f"git switch -c {branch_name}")
-                    open(f".git/.{branch_name}", "w").write(
+                    open(f".git/.{slugify(branch_name)}", "w").write(
                         f"""
                         {values['Type']}: [{values['Task selection']}] {description}
                         
