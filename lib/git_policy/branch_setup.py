@@ -109,13 +109,15 @@ def main():
                     print(f"Missing values: {actual}")
                     continue
                 else:
-                    print("Applying changes")
-                    print(values)
                     branch_name = f"{values['Type']}/{values['Task selection']}-{values['Description']}"
                     print(f"git switch -c {branch_name}")
 
                     subprocess.run(
                         ["git", "switch", "-c", branch_name], stdout=subprocess.PIPE, text=True
+                    )
+
+                    subprocess.run(
+                        ["git", "ph", "-u", "origin", branch_name], stdout=subprocess.PIPE, text=True
                     )
 
                     if not os.path.exists(".git/devops"):
