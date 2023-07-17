@@ -17,4 +17,4 @@ def put_as_githook():
     import shutil
 
     shutil.copy(__file__, ".git/hooks/")
-    shutil.move(".git/hooks/pre_commit_msg.py", ".git/hooks/prepare-commit-msg")
+    shutil.move(".git/hooks/prepare_commit_msg.py", ".git/hooks/prepare-commit-msg")

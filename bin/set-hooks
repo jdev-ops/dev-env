@@ -7,4 +7,4 @@ _pre-commit
 chmod +x .git/hooks/pre-commit
 
 _prepare-commit-msg
-chmod +x .git/hooks/pre-commit-msg
+chmod +x .git/hooks/prepare-commit-msg
