@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
 import sys
-import re
 from git import Repo
-from decouple import Config, RepositoryEnv
-
-config = Config(RepositoryEnv(".env.local"))
+from slugify import slugify
 
 if __name__ == "__main__":
-    for arg in sys.argv:
-        print(arg)
-    sys.exit(1)
-
+    if len(sys.argv) > 2: # ammended commit
+        sys.exit(0)
+    else:
+        repo = Repo(".")
+        branch_name = str(repo.active_branch)
+        template = open(f".git/.{slugify(branch_name)}").read()
+        template = open(sys.argv[-1], "w").write(template)
+        sys.exit(0)
 
 def put_as_githook():
     import shutil
