@@ -113,11 +113,15 @@ def main():
                     print(f"git switch -c {branch_name}")
 
                     subprocess.run(
-                        ["git", "switch", "-c", branch_name], stdout=subprocess.PIPE, text=True
+                        ["git", "switch", "-c", branch_name],
+                        stdout=subprocess.PIPE,
+                        text=True,
                     )
 
                     subprocess.run(
-                        ["git", "ph", "-u", "origin", branch_name], stdout=subprocess.PIPE, text=True
+                        ["git", "ph", "-u", "origin", branch_name],
+                        stdout=subprocess.PIPE,
+                        text=True,
                     )
 
                     if not os.path.exists(".git/devops"):

@@ -5,7 +5,7 @@ from git import Repo
 from slugify import slugify
 
 if __name__ == "__main__":
-    if len(sys.argv) > 2: # ammended commit
+    if len(sys.argv) > 2:  # ammended commit
         print("Amending commit, skipping")
         sys.exit(0)
     else:
@@ -14,6 +14,7 @@ if __name__ == "__main__":
         template = open(f".git/devops/.{slugify(branch_name)}").read()
         template = open(sys.argv[-1], "w").write(template)
         sys.exit(0)
+
 
 def put_as_githook():
     import shutil
