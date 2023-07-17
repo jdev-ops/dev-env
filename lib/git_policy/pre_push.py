@@ -60,7 +60,7 @@ if __name__ == "__main__":
                 sys.exit(1)
 
 
-def put_as_pre_push_githook():
+def put_as_githook():
     import shutil
 
     shutil.copy(__file__, ".git/hooks/")

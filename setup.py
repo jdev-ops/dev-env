@@ -23,14 +23,14 @@ setuptools.setup(
     install_requires=install_requires,
     include_package_data=True,
     scripts=[
-        "bin/set-pre-push-hook",
-        "bin/set-pre-commit-hook",
+        "bin/set-hooks",
     ],
     entry_points={
         "console_scripts": [
             "dot2d2=dev_conversors.main:dot_to_d2",
-            "_pre_push=git_policy.pre_push:put_as_pre_push_githook",
-            "_pre_commit=git_policy.pre_commit:put_as_pre_commit_githook",
+            "_pre-push=git_policy.pre_push:put_as_githook",
+            "_pre-commit=git_policy.pre_commit:put_as_githook",
+            "_prepare-commit-msg=git_policy.prepare_commit_msg:put_as_githook",
             "branch-setup=git_policy.branch_setup:main",
         ],
     },

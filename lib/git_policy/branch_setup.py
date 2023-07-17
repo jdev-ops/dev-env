@@ -113,11 +113,16 @@ def main():
                     print(values)
                     branch_name = f"{values['Type']}/{values['Task selection']}-{values['Description']}"
                     print(f"git switch -c {branch_name}")
+
+                    subprocess.run(
+                        ["git", "switch", "-c", branch_name], stdout=subprocess.PIPE, text=True
+                    )
+
                     open(f".git/.{slugify(branch_name)}", "w").write(
                         f"""
-                        {values['Type']}: [{values['Task selection']}] {description}
-                        
-                        Jira Ticket Link: {JIRA_BASE_URL}/browse/{values['Task selection']}
+{values['Type']}: [{values['Task selection']}] {description}
+
+Jira Ticket Link: {JIRA_BASE_URL}/browse/{values['Task selection']}
                         """
                     )
                     flag = False
