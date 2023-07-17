@@ -109,6 +109,7 @@ def main():
                 else:
                     print("Applying changes")
                     print(values)
+                    print(f"git switch -c {values['Type']}/{values['Task selection']}-{values['Description']}")
                     flag = False
 
 
