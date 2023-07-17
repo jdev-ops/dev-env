@@ -123,11 +123,10 @@ def main():
                     if not os.path.exists(".git/devops"):
                         os.makedirs(".git/devops")
                     open(f".git/devops/.{slugify(branch_name)}", "w").write(
-                        f"""
-{values['Type']}: [{values['Task selection']}] {description}
+                        f"""{values['Type']}: [{values['Task selection']}] {description}
 
 Jira Ticket Link: {JIRA_BASE_URL}/browse/{values['Task selection']}
-                        """
+"""
                     )
                     flag = False
 
